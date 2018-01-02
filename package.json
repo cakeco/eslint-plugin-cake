@@ -1,0 +1,23 @@
+{
+  "name": "eslint-plugin-cake",
+  "version": "0.0.0",
+  "description": "ESLint plugin that implements Cake specific rules",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Eric Edem",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha rules/__tests__ --recursive"
+  },
+  "devDependencies": {
+    "eslint": "~3.9.1",
+    "mocha": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "UNLICENSED"
+}
