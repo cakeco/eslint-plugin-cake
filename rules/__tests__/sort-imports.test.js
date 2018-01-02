@@ -45,7 +45,6 @@ ruleTester.run("cake-sort-imports", rule, {
       import blech from './foobar';
       import zoinks from './pinky';
     `,
-    // https://paper.dropbox.com/doc/Coding-Conventions-kBrQekv8hpRbbmqCdUUcS
     `
       import { createSelector } from 'reselect';
       import { Editor } from 'slate';
