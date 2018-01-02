@@ -19,10 +19,10 @@ const VALID_SPECIFIERS = [
 ];
 
 const SPECIFIER_GROUP_MAP = {
-  [IMPORT_DEFAULT_SPECIFIER]: 3,
-  [IMPORT_NAMESPACE_SPECIFIER]: 2, // wildcard (star)
-  [IMPORT_NO_SPECIFIER]: 1, // no naming
   [IMPORT_SPECIFIER]: 0, // destructured
+  [IMPORT_NO_SPECIFIER]: 1, // no naming
+  [IMPORT_NAMESPACE_SPECIFIER]: 2, // wildcard (star)
+  [IMPORT_DEFAULT_SPECIFIER]: 3,
 };
 
 module.exports = {
@@ -71,7 +71,7 @@ module.exports = {
           if (!nextImport.isRelative && lastImport.isRelative) {
             context.report({
               node,
-              message: 'external modules before internal modules'
+              message: 'external modules should be imported before internal modules'
             });
           } else if (lastImport.isRelative === nextImport.isRelative) {
             // In same path relativity group
@@ -80,7 +80,7 @@ module.exports = {
             ) {
               context.report({
                 node,
-                message: 'import groupings out of order'
+                message: 'import groupings should follow the order: destructured, unnamed, wildcard, default'
               });
             } else if (lastImport.specifierType === nextImport.specifierType) {
               // In same specifier type group

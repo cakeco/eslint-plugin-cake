@@ -9,12 +9,12 @@ const ruleTester = new RuleTester({
 });
 
 const ERR_RELATIVE_GROUP_ORDER = {
-  message: 'external modules before internal modules',
+  message: 'external modules should be imported before internal modules',
   type: 'ImportDeclaration'
 };
 
 const ERR_SPECIFIER_GROUP_ORDER = {
-  message: 'import groupings out of order',
+  message: 'import groupings should follow the order: destructured, unnamed, wildcard, default',
   type: 'ImportDeclaration'
 };
 
