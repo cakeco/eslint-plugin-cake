@@ -14,7 +14,7 @@ const ERR_RELATIVE_GROUP_ORDER = {
 };
 
 const ERR_SPECIFIER_GROUP_ORDER = {
-  message: 'import groupings should follow the order: destructured, unnamed, wildcard, default',
+  message: 'import groupings should follow the order: unnamed, destructured, wildcard, default',
   type: 'ImportDeclaration'
 };
 
@@ -35,27 +35,28 @@ ruleTester.run("cake-sort-imports", rule, {
       import b from './bar';
     `,
     `
-      import { a, b } from 'foo';
       import 'bar';
+      import { a, b } from 'foo';
       import c from 'baz';
 
-      import { d, e } from './blarg';
       import './blinkblink';
+      import { d, e } from './blarg';
       import * as star from './spangle';
       import blech from './foobar';
       import zoinks from './pinky';
     `,
     `
-      import { createSelector } from 'reselect';
-      import { Editor } from 'slate';
-      import flatten from 'lodash/flatten';
-      import React, { Component } from 'react';
+      import { foo } from 'bar';
+      import { Kitten } from 'cat';
+      import dog from 'animal/dog';
+      import Pizza, { Pasta } from 'italian';
 
-      import { markdownToHtml } from '../lib/markdown';
-      import { stringify } from '../lib/betterQueryString';
-      import * as actionCreators from './state';
-      import CSS from './CSS';
-      import Link from './Link';
+      import './lib/bootstrap';
+      import { enemy, friend } from './lib/people';
+      import { Epsilon } from './lib/greek';
+      import * as money from './currency';
+      import Kaboom from './Kaboom';
+      import Zoo from './Zoo';
     `,
     `
       import './kittens';

@@ -19,8 +19,8 @@ const VALID_SPECIFIERS = [
 ];
 
 const SPECIFIER_GROUP_MAP = {
-  [IMPORT_SPECIFIER]: 0, // destructured
-  [IMPORT_NO_SPECIFIER]: 1, // no naming
+  [IMPORT_SPECIFIER]: 1, // destructured
+  [IMPORT_NO_SPECIFIER]: 0, // no naming
   [IMPORT_NAMESPACE_SPECIFIER]: 2, // wildcard (star)
   [IMPORT_DEFAULT_SPECIFIER]: 3,
 };
@@ -80,7 +80,7 @@ module.exports = {
             ) {
               context.report({
                 node,
-                message: 'import groupings should follow the order: destructured, unnamed, wildcard, default'
+                message: 'import groupings should follow the order: unnamed, destructured, wildcard, default'
               });
             } else if (lastImport.specifierType === nextImport.specifierType) {
               // In same specifier type group
