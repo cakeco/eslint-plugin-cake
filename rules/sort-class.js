@@ -24,15 +24,16 @@ In the above case, even though bar comes after foo, it is in its own section
 that is delimited by the above comment.
 */
 
-const SECTION_DELIMITER_PATTERN = ' -- ';
+const DEFAULT_DELIMITER_PATTERN = ' -- ';
 const ERR_SORT_CLASS_BODY =
   'class methods and properties should be sorted alphabetically';
 
 module.exports = {
   meta: {
     docs: {
-      description: 'Sort main module body according to cake style'
-    }
+      description: 'Sort class bodies alphabetically'
+    },
+    schema: []
   },
 
   create: context => {
@@ -49,10 +50,21 @@ module.exports = {
       },
 
       ClassBody: node => {
+        let allowConstructorFirst = true;
         let lastSortString = null;
         let nextCommentLine = commentLines.shift();
 
         for (let i = 0; i < node.body.length; i++) {
+          // Allow constructor to be the first node.
+          if (
+            i === 0 &&
+            allowConstructorFirst &&
+            node.body[i].type === 'MethodDefinition' &&
+            node.body[i].key.name === 'constructor'
+          ) {
+            continue;
+          }
+
           let bodyNode = node.body[i];
 
           // Get rid of any leftover comments before this node
@@ -85,7 +97,6 @@ module.exports = {
 };
 
 function getSortString(node) {
-  // TODO: double check that all these are always available
   if (node.type === 'MethodDefinition') {
     return node.key.name;
   } else if (node.type === 'ClassProperty') {
@@ -96,5 +107,8 @@ function getSortString(node) {
 }
 
 function isSectionComment(comment) {
-  return comment.type == 'Line' && comment.value.startsWith(' -- ');
+  return (
+    comment.type == 'Line' &&
+    comment.value.startsWith(DEFAULT_DELIMITER_PATTERN)
+  );
 }

@@ -50,6 +50,12 @@ class Foo extends Bar {
     // detonate the confetti bomb
   }
 }
+    `,
+    `
+class Foo {
+  constructor() {}
+  a() {}
+}
     `
   ],
   invalid: [
