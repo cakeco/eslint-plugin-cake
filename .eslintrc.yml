@@ -1,0 +1,13 @@
+env:
+  es6: true
+  node: true
+
+plugins:
+  - prettier
+
+rules:
+
+  # -- Prettier Rules ----------------------------------------------------------
+  prettier/prettier:
+    - error
+    - singleQuote: true

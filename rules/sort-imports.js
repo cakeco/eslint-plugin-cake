@@ -22,13 +22,13 @@ const SPECIFIER_GROUP_MAP = {
   [IMPORT_SPECIFIER]: 1, // destructured
   [IMPORT_NO_SPECIFIER]: 0, // no naming
   [IMPORT_NAMESPACE_SPECIFIER]: 2, // wildcard (star)
-  [IMPORT_DEFAULT_SPECIFIER]: 3,
+  [IMPORT_DEFAULT_SPECIFIER]: 3
 };
 
 module.exports = {
   meta: {
     docs: {
-      description: "Sort imports according to cake style"
+      description: 'Sort imports according to cake style'
     }
   },
 
@@ -47,9 +47,10 @@ module.exports = {
         };
 
         // destructured import name sorting
-        if (nextImport.specifierType === IMPORT_SPECIFIER
-          && node.specifiers.length > 1) {
-
+        if (
+          nextImport.specifierType === IMPORT_SPECIFIER &&
+          node.specifiers.length > 1
+        ) {
           let lastName;
 
           for (let specifier of node.specifiers) {
@@ -71,16 +72,16 @@ module.exports = {
           if (!nextImport.isRelative && lastImport.isRelative) {
             context.report({
               node,
-              message: 'external modules should be imported before internal modules'
+              message:
+                'external modules should be imported before internal modules'
             });
           } else if (lastImport.isRelative === nextImport.isRelative) {
             // In same path relativity group
-            if (
-              lastImport.specifierGroup > nextImport.specifierGroup
-            ) {
+            if (lastImport.specifierGroup > nextImport.specifierGroup) {
               context.report({
                 node,
-                message: 'import groupings should follow the order: unnamed, destructured, wildcard, default'
+                message:
+                  'import groupings should follow the order: unnamed, destructured, wildcard, default'
               });
             } else if (lastImport.specifierType === nextImport.specifierType) {
               // In same specifier type group
@@ -108,8 +109,7 @@ the global namespace.
 function isRelative(node) {
   let rawValue = node.source.value;
 
-  return rawValue.startsWith('./')
-    || rawValue.startsWith('../');
+  return rawValue.startsWith('./') || rawValue.startsWith('../');
 }
 
 function getSpecifierType(node) {

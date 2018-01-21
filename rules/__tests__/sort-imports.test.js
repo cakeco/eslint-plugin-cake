@@ -4,7 +4,7 @@ const rule = require('../sort-imports');
 const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module"
+    sourceType: 'module'
   }
 });
 
@@ -14,7 +14,8 @@ const ERR_RELATIVE_GROUP_ORDER = {
 };
 
 const ERR_SPECIFIER_GROUP_ORDER = {
-  message: 'import groupings should follow the order: unnamed, destructured, wildcard, default',
+  message:
+    'import groupings should follow the order: unnamed, destructured, wildcard, default',
   type: 'ImportDeclaration'
 };
 
@@ -28,7 +29,7 @@ const ERR_ALPHABET_SPECIFIER_ORDER = {
   type: 'ImportSpecifier'
 };
 
-ruleTester.run("cake-sort-imports", rule, {
+ruleTester.run('cake-sort-imports', rule, {
   valid: [
     `
       import a from 'foo';
@@ -61,7 +62,7 @@ ruleTester.run("cake-sort-imports", rule, {
     `
       import './kittens';
       import './puppies';
-    `,
+    `
   ],
   invalid: [
     {
